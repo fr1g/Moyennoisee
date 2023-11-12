@@ -5,14 +5,15 @@
   "author": "Feiron <53085628+fr1g@users.noreply.github.com>",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --port 8079",
     "start": "npm run dev",
     "build": "node build/build.js"
   },
   "dependencies": {
     "vue": "^2.5.2",
     "vue-hot-reload-api": "^2.3.4",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "webpack-cli": "^5.1.4"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -48,6 +49,7 @@
     "vue-template-compiler": "^2.5.2",
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.9.0",
+    "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^2.9.1",
     "webpack-merge": "^4.1.0"
   },
