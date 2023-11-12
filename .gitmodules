@@ -1,0 +1,3 @@
+[submodule "Moyen"]
+    path = ./source/springboot/Moyen
+    url = ./source/springboot/Moyen
