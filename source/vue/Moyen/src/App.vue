@@ -1,10 +1,10 @@
 <template>
     <div id="app">
         <Navigate>
-            <NavItem content="Services"  />
-            <NavItem content="Customers" />
-            <NavItem content="Logs" />
-            <NavItem content="eeaa" position="right" />
+            <NavItem content="Services" :target="'/services'" />
+            <NavItem content="Customers" :target="'/customers'" />
+            <NavItem content="Logs" :target="'/log'" />
+            <NavItem content="Auth/Leave" position="right" :target="'/login'" />
         </Navigate>
         <div class="h-screen bg-zinc-800 shadow-lg z-10">
             <router-view/>
@@ -17,6 +17,7 @@
 import Footer from '@/components/Footer'
 import Navigate from '@/components/Navigate'
 import NavItem from '@/components/NavigateItem'
+
 export default {
     name: 'App',
     components: {Footer, Navigate, NavItem},
@@ -30,5 +31,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+.default-height{
+    min-height: 66vh;
 }
 </style>

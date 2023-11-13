@@ -5,6 +5,7 @@ import Index from '@/components/Index'
 import Servs from '@/Pages/AvaliableServices'
 import Custs from '@/Pages/Customers'
 import Tra from '@/Pages/Transactions'
+import Login from '@/Pages/AdminLogin'
 
 // import Body from '@/components/BodyRender'
 
@@ -31,9 +32,14 @@ export default new Router({
     },
     
     {
-      path: '/trlog/:one', // one: the exactly transition logger.
+      path: '/log/:one', // one: the exactly transition logger.
       name: 'Transaction Logs',
       component: Tra
+    },    
+    {
+      path: '/login', // one: the exactly transition logger.
+      name: 'Logni',
+      component: Login
     },
     
   ]

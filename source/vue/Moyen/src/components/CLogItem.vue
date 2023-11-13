@@ -3,7 +3,7 @@
 </template>
 <script> // @code
 export default {
-    name: 'CustItem',
+    name: 'LogItem',
     data () {
         return {
         msg: 'Welcome to Your Vue.js App'
