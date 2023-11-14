@@ -6,7 +6,7 @@
             <NavItem content="Logs" :target="'/log'" />
             <NavItem content="Auth/Leave" position="right" :target="'/login'" />
         </Navigate>
-        <div class="h-screen bg-zinc-800 shadow-lg z-10">
+        <div class="h-screen max-w-screen bg-zinc-800 shadow-lg z-10">
             <router-view/>
         </div>
         <Footer></Footer>
