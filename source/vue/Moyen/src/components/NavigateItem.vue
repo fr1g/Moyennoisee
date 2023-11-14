@@ -11,7 +11,7 @@
 export default {
     name: 'NavigateItem',
     created: () => {
-        console.log(this.a.props);
+        
     },
     data () {
         return {

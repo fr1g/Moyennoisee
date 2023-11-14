@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/dev-api': {
-        target: 'http://localhost:8081',
+        target: 'http://localhost:8080', // 8081 gab machine
         changeOrigin: true,
         pathRewrite: { '^/dev-api': '' }
       }
