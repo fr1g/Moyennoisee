@@ -6,9 +6,9 @@
             <p class="text-right text-lg mb-3"> 
                 <span>
                     <label for="logs-filterUserLogs">
-                        Search by User name: 
+                        Search by User ID: 
                     </label>
-                    <input id="logs-filterUserLogs"  class="m-1 bg-zinc-400 bg-opacity-30 hover:bg-opacity-50 focus:bg-opacity-90 text-zinc-100 px-1.5 mx-2 text-lg p-1 transition-all border border-zinc-600 rounded-lg shadow hover:shadow-md">
+                    <input id="logs-filterUserLogs" type="number" class="m-1 bg-zinc-400 bg-opacity-30 hover:bg-opacity-50 focus:bg-opacity-90 text-zinc-100 px-1.5 mx-2 text-lg p-1 transition-all border border-zinc-600 rounded-lg shadow hover:shadow-md">
                 </span>
                 <span class="bg-zinc-400 mr-2.5 bg-opacity-50 p-1.5 px-2 hover:bg-opacity-60 active:bg-opacity-70 transition-all shadow-lg hover:shadow-xl active:shadow rounded-lg">
                     &nbsp;do &raquo;

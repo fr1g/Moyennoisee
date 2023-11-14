@@ -16,5 +16,97 @@
   <body class="text-zinc-100 bg-zinc-800">
     <div id="app"></div>
     <!-- built files will be auto injected -->
+
+    <!-- POPUP TOAST -->
+    <div id="popup-container">
+      <div class="PopUpToastArea fixed w-full m-2 text-center bottom-0 pb-3" id="pa">
+          <!-- -->
+      </div>
+      <style>
+          :root{
+              --toast-span: .78s;
+              --toast-pos: 21vh;
+              /* POPUP TOAST CONFIGURATION */
+          }
+      
+          input{
+              outline: 0;
+          }
+      
+          .toast-initial{
+              transform: translateY(var(--toast-pos));
+              animation: cubic-bezier(0.075, 0.82, 0.165, 1) popupAnimate var(--toast-span) forwards;
+      
+          }
+
+          .toast-leave{
+              animation: cubic-bezier(0.075, 0.82, 0.165, 1) popupLeave var(--toast-span) forwards;
+
+          }
+      
+          @keyframes popupAnimate {
+              0%{
+                  transform: translateY(var(--toast-pos));
+              }
+              100%{
+                  transform: translateY(calc(-1 * var(--toast-pos)));
+              }
+          }
+
+          @keyframes popupLeave{
+              0%{
+                  transform: translateY(calc(-1 * var(--toast-pos)));
+              }
+              100%{
+                  transform: translateY(calc(var(--toast-pos) * 1.2));
+              }
+          }
+      </style>
+      <script>
+          const PopUpToastContainerClass = "toast-initial fixed p-3 #COLOR# shadow rounded-lg mx-auto max-w-max left-0 right-0 inline-block";
+          const PopUpToastInnerClass = "inline-block px-2.5 mx-auto font-semibold text-lg";
+          var PopupArea = document.getElementById('pa');
+      
+          function PushToast(str, ucolor = "bg-emerald-400", later = 0, disappear = 3200){
+              let color = ucolor;
+              setTimeout(() => {
+                  switch(color){
+                      case "normal":
+                          // do nothing on the color
+                          break;
+                      case "warn":
+                          color = "bg-yellow-400";
+                          break;
+                      case "err":
+                          color = "bg-rose-400";
+                          break;
+                      default:
+                          break;
+                  }
+                  let containerC = PopUpToastContainerClass.replace('#COLOR#', color);
+                  let nPopToast = document.createElement('div');
+                  let nPopToastText = document.createElement('p');
+                  nPopToastText.innerHTML = str;
+                  nPopToast.appendChild(nPopToastText);
+                  for(let ii of containerC.split(" ")){
+                      nPopToast.classList.add(ii);
+                  }
+                  for(let ii of PopUpToastInnerClass.split(" ")){
+                      nPopToastText.classList.add(ii);
+                  }
+                  PopupArea.appendChild(nPopToast);
+      
+                  setTimeout(() => {
+                      nPopToast.classList.replace('toast-initial', 'toast-leave')
+                  }, disappear);
+                  setTimeout(() => {
+                      PopupArea.removeChild(nPopToast);
+                      delete nPopToast;
+                  }, 787 + disappear);
+      
+              }, later);
+          };
+          
+      </script>
   </body>
 </html>

@@ -6,8 +6,12 @@ import Servs from '@/Pages/AvaliableServices'
 import Custs from '@/Pages/Customers'
 import Tra from '@/Pages/Transactions'
 import Login from '@/Pages/AdminLogin'
+import Blank from '@/Pages/Blank'
 
 // import Body from '@/components/BodyRender'
+
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {return originalPush.call(this, location).catch(err => err)}
 
 Vue.use(Router)
 
@@ -40,6 +44,11 @@ export default new Router({
       path: '/login', 
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/blank', 
+      name: 'Redirect',
+      component: Blank
     },
     
   ]

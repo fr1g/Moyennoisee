@@ -4,19 +4,22 @@
             <NavItem content="Services" :target="'/services'" />
             <NavItem content="Customers" :target="'/customers'" />
             <NavItem content="Logs" :target="'/log'" />
-            <NavItem content="Auth/Leave" position="right" :target="'/login'" />
+            <NavItem :content="(this.AuthToken == null ? 'Auth' : 'Leave')" position="right" id="AuthBtn" :target="'/blank'" />
         </Navigate>
         <div class="h-screen max-w-screen bg-zinc-800 shadow-lg z-10">
             <router-view/>
         </div>
-        <Footer></Footer>
+        
+        <Footer>
+            <p class="font-thin text-xs">AT - {{ (this.AuthToken == null ? '' : this.AuthToken).slice(1, 33) }}</p>
+        </Footer>
 
         <Modal :visibility="this.ModalStatus" :title="this.ModalTitle" >
             <div :class="(this.ModalElementContentIden == 'text' ? 'inline' : 'hidden')">
                     {{ this.ModalText }}
             </div>            
             <div :class="(this.ModalElementContentIden == 'CreateUser' ? 'inline' : 'hidden')">
-                
+                <CreateUser />
             </div>            
             <div :class="(this.ModalElementContentIden == 'NewService' ? 'inline' : 'hidden')">
                 <NewService />
@@ -36,24 +39,43 @@ import NavItem from '@/components/NavigateItem'
 import Modal from '@/components/Modal'
 
 import NewService from '@/components/Forms/NewServiceInsert'
+import CreateUser from '@/components/Forms/NewUserForm'
 import NewLog from '@/components/Forms/NewLogInsert'
+import router from './router'
+
+window.onclick = () => {if(!sessionStorage.getItem('token')) router.push('/login');}
 
 export default {
     name: 'App',
-    components: {Footer, Navigate, NavItem, Modal, NewService, NewLog},
+    components: {Footer, Navigate, NavItem, Modal, NewService, NewLog, CreateUser},
+    mounted(){
+        this.AuthToken = sessionStorage.getItem('token');
+        document.getElementById('AuthBtn').addEventListener('click', () => { 
+            if(sessionStorage.getItem('token')) {
+                sessionStorage.removeItem('token'); 
+                router.push('/blank');
+                PushToast('Destroying connect, Waiting reload...', 'warn');
+                window.location.reload(); 
+            }
+        })
+        if(!sessionStorage.getItem('token')) router.push('/login');
+    },
     data() {
         return{
             // ModalStatus: true,
             ModalStatus: false,
             ModalElementContentIden: 'text',
             ModalText: '',
-            ModalTitle: 'Hey...'
+            ModalTitle: 'Hey...',
+            AuthToken: '',
         }
     },
     provide() {
         return{
             ShutModal: this.ShutModal,
-            NewLogIns: this.OpenNewLogIns
+            NewLogIns: this.OpenNewLogIns,
+            NewUsr: this.OpenNewUser,
+            NewSrv: this.OpenNewSrv,
         }
     },
     methods: {
@@ -77,7 +99,9 @@ export default {
             this.ModalPush(target);
             this.ShowModal();
         },
-        OpenNewLogIns: function(){this.NewBusinessModal('InsertLog'); this.ModalTitle = 'Manually Insert Log'}
+        OpenNewLogIns: function(){this.NewBusinessModal('InsertLog'); this.ModalTitle = 'Manually Insert Log'},
+        OpenNewUser: function(){this.NewBusinessModal('CreateUser'); this.ModalTitle = 'Add Customer'},
+        OpenNewSrv: function(){this.NewBusinessModal('NewService'); this.ModalTitle = 'View Services'},
     }
 }
 </script>

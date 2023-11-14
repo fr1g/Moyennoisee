@@ -52,10 +52,10 @@
       mounted: function(){
           console.log(this.results[1]);
       },
-      inject: ['NewLogIns'],
+      inject: ['NewUsr'],
       methods: {
           Insert: function(){
-                  this.NewLogIns();
+                  this.NewUsr();
               },
           prev: function(){},
           next: function(){},

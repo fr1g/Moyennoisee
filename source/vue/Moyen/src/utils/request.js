@@ -40,6 +40,7 @@ service.interceptors.response.use(
   },
   error => {
     console.log('err' + error) // for debug
+    PushToast(error, 'err');
     return Promise.reject(error)
   }
 )

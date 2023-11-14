@@ -1,5 +1,6 @@
 <template>
 <div>
+    <br>
     <form>
         <h3>Name of New service</h3>
         <input id="s-name" type="text" :class="this.usually + ' w-2/3'">
@@ -10,11 +11,12 @@
         <h3>Cost</h3>
         <input id="s-price" type="number" :class="this.usually + ' w-2/3'">
 
-        <br>
-        <span v-on:click="HandleSubmit()">
-            <btn :cont="'SUBMIT'" />
-        </span>
     </form>
+    <br>
+
+    <span v-on:click="HandleSubmit()">
+        <btn :cont="'SUBMIT'" />
+    </span>
 </div>
 </template>
 <style scoped>
@@ -41,7 +43,10 @@ export default{
     computed: {},
     methods: {
         Shut: function(){this.ShutModal()},
-        HandleSubmit: function(){},
+        HandleSubmit: function(){
+            // ...
+            this.Shut();
+        },
     }
 }
 
