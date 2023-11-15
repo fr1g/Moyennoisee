@@ -6,6 +6,7 @@
 <script> // @code
 export default {
     name: 'ServCard',
+    props: ["name"],
     data () {
         return {
         msg: 'Welcome to Your Vue.js App'

@@ -38,15 +38,7 @@
             </tbody>
         </table>
         <div class="inline-block mx-auto w-1/3 mt-3.5 pt-2">
-            <div class="grid grid-cols-3 gap-2 pb-1.5">
-                <div class="itm" v-on:click="prev()">
-                    <btn :cont="'<<<'"/>
-                </div>
-                <div class="itm"></div>
-                <div class="itm" v-on:click="next()">
-                    <btn :cont="'>>>'"/>
-                </div>
-            </div>
+            <btn cont="Load More" />
         </div>
     </div>
 </div>

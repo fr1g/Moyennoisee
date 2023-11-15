@@ -1,10 +1,11 @@
 <template>
     <div id="app">
-        <Navigate>
+        <Navigate> 
             <NavItem content="Services" :target="'/services'" />
             <NavItem content="Customers" :target="'/customers'" />
             <NavItem content="Logs" :target="'/log'" />
-            <NavItem :content="(this.AuthToken == null ? 'Auth' : 'Leave')" position="right" id="AuthBtn" :target="'/blank'" />
+            <NavItem content="Fund" position="right" @click.native="OpenAF()" />
+            <NavItem :content="(this.AuthToken == null ? 'Auth' : 'Leave')" id="AuthBtn" :target="'/blank'" />
         </Navigate>
         <div class="h-screen max-w-screen bg-zinc-800 shadow-lg z-10">
             <router-view/>
@@ -27,6 +28,9 @@
             <div :class="(this.ModalElementContentIden == 'InsertLog' ? 'inline' : 'hidden')">
                 <NewLog />
             </div>
+            <div :class="(this.ModalElementContentIden == 'AF' ? 'inline' : 'hidden')">
+                <AddFund />
+            </div>
         </Modal>
     
     </div>
@@ -41,19 +45,21 @@ import Modal from '@/components/Modal'
 import NewService from '@/components/Forms/NewServiceInsert'
 import CreateUser from '@/components/Forms/NewUserForm'
 import NewLog from '@/components/Forms/NewLogInsert'
+import AddFund from '@/components/Forms/AddFund'
 import router from './router'
 
 window.onclick = () => {if(!sessionStorage.getItem('token')) router.push('/login');}
 
 export default {
     name: 'App',
-    components: {Footer, Navigate, NavItem, Modal, NewService, NewLog, CreateUser},
+    components: {Footer, Navigate, NavItem, Modal, NewService, NewLog, CreateUser, AddFund},
     mounted(){
         this.AuthToken = sessionStorage.getItem('token');
         document.getElementById('AuthBtn').addEventListener('click', () => { 
             if(sessionStorage.getItem('token')) {
                 sessionStorage.removeItem('token'); 
                 router.push('/blank');
+                this.NewTextModal('In Progress of Vanish...', 'OFF')
                 PushToast('Destroying connect, Waiting reload...', 'warn');
                 window.location.reload(); 
             }
@@ -89,9 +95,10 @@ export default {
         ShowModal: function(){
             this.ModalStatus = true;
         },
-        NewTextModal: function(text){
+        NewTextModal: function(text, title = 'text'){
             this.ShutModal();
             this.ModalPush('text', text);
+            this.ModalTitle = title
             this.ShowModal();
         },
         NewBusinessModal: function(target){
@@ -102,6 +109,7 @@ export default {
         OpenNewLogIns: function(){this.NewBusinessModal('InsertLog'); this.ModalTitle = 'Manually Insert Log'},
         OpenNewUser: function(){this.NewBusinessModal('CreateUser'); this.ModalTitle = 'Add Customer'},
         OpenNewSrv: function(){this.NewBusinessModal('NewService'); this.ModalTitle = 'View Services'},
+        OpenAF: function(){this.NewBusinessModal('AF'); this.ModalTitle = 'Add fund for...'},
     }
 }
 </script>

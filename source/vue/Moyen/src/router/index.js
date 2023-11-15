@@ -36,7 +36,7 @@ export default new Router({
     },
     
     {
-      path: '/log', // one: the exactly transition logger.
+      path: '/log/:one?', // one: the exactly transition logger.
       name: 'Transaction Logs',
       component: Tra
     },    

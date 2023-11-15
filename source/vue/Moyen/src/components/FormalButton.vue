@@ -1,5 +1,5 @@
 <template>
-    <span class="bg-zinc-400 bg-opacity-50 mx-0.5 p-1.5 px-2 hover:bg-opacity-60 active:bg-opacity-70 transition-all shadow-lg hover:shadow-xl active:shadow rounded-lg">
+    <span class="bg-zinc-400 bg-opacity-50 mx-0.5 inline-block p-1.5 px-2 hover:bg-opacity-60 active:bg-opacity-70 transition-all shadow-lg hover:shadow-xl active:shadow rounded-lg">
         {{ this.cont }}
     </span>
 </template>
