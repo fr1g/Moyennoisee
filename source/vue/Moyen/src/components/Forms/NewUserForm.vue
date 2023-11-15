@@ -45,6 +45,7 @@
         methods: {
             Shut: function(){this.ShutModal(); this.uname = ''; this.ucont = '';},
             HandleSubmit: function(){
+                console.log(request);
                 request.SubmitNewUser(this.uname, this.ucont, sessionStorage.getItem('token'))
                 .then(result => {
                     console.log(result);

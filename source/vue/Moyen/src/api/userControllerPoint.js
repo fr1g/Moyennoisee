@@ -1,14 +1,14 @@
 import request from '@/utils/request'
 
-export default{
+export default {
     name: 'userControllerPoint',
     SubmitNewUser: function(uname, ucontact, token){
         return request({
             url: '/customer/create',
-            method: 'POST',
+            method: 'post',
             data: `${uname}&&&${ucontact}`,
             headers: {
-                'Content-Type': 'raw',
+                'Content-Type': 'text/raw',
                 'token': token
             }
         })
