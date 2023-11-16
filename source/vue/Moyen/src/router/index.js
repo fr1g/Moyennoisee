@@ -38,7 +38,8 @@ export default new Router({
     {
       path: '/log/:one?', // one: the exactly transition logger.
       name: 'Transaction Logs',
-      component: Tra
+      component: Tra,
+      props: true
     },    
     {
       path: '/login', 

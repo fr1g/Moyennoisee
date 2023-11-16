@@ -25,7 +25,7 @@
     import btn from '@/components/FormalButton'
     import request from '@/api/userControllerPoint'
     
-    export default{
+    export default {
         name: 'NewUserForm',
         inject: ["ShutModal"],
         components: {btn},

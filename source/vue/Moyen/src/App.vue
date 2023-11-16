@@ -7,7 +7,7 @@
             <NavItem content="Fund" position="right" @click.native="OpenAF()" />
             <NavItem :content="(this.AuthToken == null ? 'Auth' : 'Leave')" id="AuthBtn" :target="'/blank'" />
         </Navigate>
-        <div class="h-screen max-w-screen bg-zinc-800 shadow-lg z-10">
+        <div class="min-h-screen max-w-screen bg-zinc-800 shadow-lg z-10">
             <router-view/>
         </div>
         
@@ -82,6 +82,7 @@ export default {
             NewLogIns: this.OpenNewLogIns,
             NewUsr: this.OpenNewUser,
             NewSrv: this.OpenNewSrv,
+            AF: this.OpenAF
         }
     },
     methods: {
@@ -131,5 +132,28 @@ tr:nth-child(odd) > td > * {
     border: 1px rgba(244, 244, 244, 0.32) solid !important;
     opacity: .89;
 }
+
+a{
+    text-decoration: underline;
+    color: rgb(95, 149, 233);
+    opacity: 0.76;
+}
+a:hover{
+    opacity: 0.9;
+}
+a:active{
+    opacity: 1;
+}
+a:visited{
+    opacity: 0.8;
+    /* text-decoration: line-through; */
+}
+
+.disable{
+    pointer-events: none;
+    mix-blend-mode: difference;
+}
+
+
 
 </style>

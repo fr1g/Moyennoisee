@@ -9,19 +9,21 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     // before request is sent
-    console.log(sessionStorage.getItem('token'))
+    // console.log(sessionStorage.getItem('token'))
+    // console.log(config);
 
     // if (store.getters.token) {
     //   // let each request carry token
     //   // ['X-Token'] is a custom headers key
     //   // please modify it according to the actual situation
-    //   config.headers['Gab-Token'] = getToken()
+    //   config.headers['?token'] = getToken()
     // }
     return config
   },
   error => {
     // do something with request error
-    console.log(error) // for debug
+    PushToast(error, 'err');
+    console.log(`${error}, ${typeof error}`) // for debug
     return Promise.reject(error)
   }
 )
@@ -30,12 +32,20 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   response => {
     const res = response.data
-
-    if (res.code !== 200) {
+    // PushToast(0);
+    if (res.code == 200 || res.code == undefined) {
+      return res
+    } else {
+      
+      if(res.code == 440){
+        sessionStorage.removeItem('token');
+        PushToast('Token Vanished. ');
+        setTimeout(() => {
+          window.location.reload();
+        }, 600);        
+      }
       console.log('err' + res.code + res.content)
       return Promise.reject(new Error(res.content || 'Error'))
-    } else {
-      return res
     }
   },
   error => {

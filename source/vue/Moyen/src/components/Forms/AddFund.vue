@@ -2,9 +2,10 @@
     <div>
         <form>
             <h3>Search Customer</h3>
-            <div class="grid grid-cols-4">
-                <input id="L-uid" type="number" v-model="Search" :class="this.usually + ' block col-span-3 w-full'" placeholder="UID Number"> 
-                <span  v-on:click="HandleSearch()" class="block col-span-1 mx-2 translate-y-1">
+            <!-- <div class="grid grid-cols-4"> -->
+            <div class="g4">
+                <input id="AFUID" type="number" v-model="Search" :class="this.usually + ' mx-auto w-2/3 l'" placeholder="UID Number"> 
+                <span id="AFQUERY" v-on:click="HandleSearch()" class="bloc hidden k col-span-1 mx-2 translate-y-1">
                     <btn :cont="'QUERY'"/>
                 </span> 
             </div>
@@ -12,7 +13,7 @@
 
             </div>          
             <h3>Cash Received</h3>
-            <input id="L-sid" type="number" :class="this.usually + ' w-2/3'">
+            <input id="AFAMOUNT" type="number" :class="this.usually + ' w-2/3'">
 
         </form>
         <br>
@@ -31,6 +32,7 @@
     </style>
     <script>
     import btn from '@/components/FormalButton'
+    import request from '@/api/userControllerPoint'
     
     export default{
         name: 'AddFund',
@@ -45,9 +47,11 @@
 
         computed: {},
         methods: {
-            Shut: function(){this.ShutModal()},
+            Shut: function(){this.ShutModal(); window.location.reload();},
             HandleSubmit: function(){
                 // ... 
+                request.AddFund(document.getElementById('AFUID').value, document.getElementById('AFAMOUNT').value, sessionStorage.getItem('token'))
+                .catch(err => {console.error(err)});
                 this.Shut();
             },
             HandleSearch: function(){
