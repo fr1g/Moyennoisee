@@ -31,6 +31,9 @@
             <div :class="(this.ModalElementContentIden == 'AF' ? 'inline' : 'hidden')">
                 <AddFund />
             </div>
+            <div :class="(this.ModalElementContentIden == 'UTS' ? 'inline' : 'hidden')">
+                <UTags />
+            </div>
         </Modal>
     
     </div>
@@ -46,6 +49,8 @@ import NewService from '@/components/Forms/NewServiceInsert'
 import CreateUser from '@/components/Forms/NewUserForm'
 import NewLog from '@/components/Forms/NewLogInsert'
 import AddFund from '@/components/Forms/AddFund'
+import UTags from '@/components/Forms/UpdateSTags'
+
 import router from './router'
 
 window.onclick = () => {if(!sessionStorage.getItem('token')) router.push('/login');}
@@ -82,7 +87,8 @@ export default {
             NewLogIns: this.OpenNewLogIns,
             NewUsr: this.OpenNewUser,
             NewSrv: this.OpenNewSrv,
-            AF: this.OpenAF
+            AF: this.OpenAF,
+            UTags: this.OpenUT
         }
     },
     methods: {
@@ -111,6 +117,7 @@ export default {
         OpenNewUser: function(){this.NewBusinessModal('CreateUser'); this.ModalTitle = 'Add Customer'},
         OpenNewSrv: function(){this.NewBusinessModal('NewService'); this.ModalTitle = 'View Services'},
         OpenAF: function(){this.NewBusinessModal('AF'); this.ModalTitle = 'Add fund for...'},
+        OpenUT: function(){this.NewBusinessModal('UTS'); this.ModalTitle = 'Update Tags.'},
     }
 }
 </script>

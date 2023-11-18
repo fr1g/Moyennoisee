@@ -7,6 +7,7 @@
             :desc="card.describe"
             :price="card.cost"
             :plus="card.plus"
+            :iid="card.id"
         />
         
     </div>
@@ -47,8 +48,8 @@ export default {
                 var parsed = JSON.parse(response.replace(', ]"', ']').replace('"content": "[', '"content": ['));
                 this.CardList = this.CardList.concat(parsed.content);
                 this.range += 1;
-                console.log(this.CardList)
             }).catch(err => { if(err.toString().includes('response.replace is not a function')) { PushToast('Reached the bottom! :: ' + this.loadedRange, 'warn');; return;} console.error(err + '?')});
+            
         }
     },
 }

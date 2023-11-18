@@ -26,6 +26,7 @@
                 <th  class="pb-6" >ID</th>
                 <th  class="pb-6" >Customer</th>
                 <th  class="pb-6" >For</th>
+                <th  class="pb-6" >Add</th>
                 <th  class="pb-6" >Time</th>
             </thead>
             <tbody class="mt-2" >
@@ -40,6 +41,7 @@
                         :payer="(`${log.userName}(${log.userId})`)"
                         :serv="(`${log.serviceName}(${log.serviceId})`)"
                         :time="log.date"
+                        :add="log.add"
                 />
                 <!-- 我真应该给这玩意加个EX-Field -->
             </tbody>

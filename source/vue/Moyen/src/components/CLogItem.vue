@@ -14,6 +14,11 @@
         <div :class="this.class">
             {{ serv }}
         </div>
+    </td>    
+    <td class="" title="Additional">
+        <div :class="this.class">
+            {{ add == undefined ? 'N/A' : add }}
+        </div>
     </td>
     <td class="" title="Time Consumed">
         <div :class="this.class">
@@ -31,6 +36,6 @@ export default {
         class: 'border border-transparent  rounded-lg h-full text-xl p-1 ml-1 mb-1 bg-zinc-500 bg-opacity-60  hover:bg-opacity-70 active:bg-opacity-80 shadow hover:shadow-xl active:shadow-lg transition-all'
         }
     },
-    props: ["lid", "payer", "serv", "time"]
+    props: ["lid", "payer", "serv", "time", "add"]
 }
 </script>

@@ -25,5 +25,16 @@ export default {
             }
         })
     },
+    UpdateTags: function(sid, tag, token){ // p:<page> for all-paged or u:<uid> for exactly one
+        return request({
+            url: '/service/get',
+            method: 'post',
+            data: `${sid}:${tag}`,
+            headers: {
+                'Content-Type': 'text/raw',
+                'token': token
+            }
+        })
+    },
 
 }
