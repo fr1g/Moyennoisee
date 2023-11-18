@@ -1,11 +1,11 @@
 <template>
     <div>
-        <p>{{ preUser | SplitCaps }}</p>
+
         <form>
             <h3>Service ID</h3>
-            <input required id="STAGID" type="number" :class="this.usually + ' w-2/3'" >
+            <input required id="STAGID" v-model="sid" type="number" :class="this.usually + ' w-2/3'" >
             <h3>Tags</h3>
-            <input required id="STAG" type="text" :class="this.usually + ' w-2/3'" >
+            <input required id="STAG" v-model="newtag" type="text" :class="this.usually + ' w-2/3'" >
         </form>
         <br>
         <span v-on:click="HandleSubmit()">
@@ -23,11 +23,12 @@
     </style>
     <script>
     import btn from '@/components/FormalButton'
-    import request from '@/api/userControllerPoint'
+    import request from '@/api/servCP'
     
     export default {
         name: 'UpdateSTags',
         inject: ["ShutModal"],
+        // mounted: function(){ console.log('????'); },
         components: {btn},
         data: function(){
             return{
@@ -38,10 +39,10 @@
             }
         },
         methods: {
-            Shut: function(){this.ShutModal();},
+            Shut: function(){this.ShutModal(); console.log('???'); },
             HandleSubmit: function(){
-                console.log(request);
-                request.UpdateSTags(this.sid, this.newtag, sessionStorage.getItem('token'))
+            
+                request.UpdateTags(this.sid, this.newtag, sessionStorage.getItem('token'))
                 .then(result => {
                     console.log(result);
                 }).catch(err => {console.error(err)});

@@ -57,7 +57,7 @@ window.onclick = () => {if(!sessionStorage.getItem('token')) router.push('/login
 
 export default {
     name: 'App',
-    components: {Footer, Navigate, NavItem, Modal, NewService, NewLog, CreateUser, AddFund},
+    components: {Footer, Navigate, NavItem, Modal, NewService, NewLog, CreateUser, AddFund, UTags},
     mounted(){
         this.AuthToken = sessionStorage.getItem('token');
         document.getElementById('AuthBtn').addEventListener('click', () => { 
@@ -94,6 +94,8 @@ export default {
     methods: {
         ShutModal: function(){
             this.ModalStatus = false;
+            this.iden = '';
+
         },
         ModalPush: function(iden, text = ''){
             this.ModalElementContentIden = iden;
@@ -117,7 +119,7 @@ export default {
         OpenNewUser: function(){this.NewBusinessModal('CreateUser'); this.ModalTitle = 'Add Customer'},
         OpenNewSrv: function(){this.NewBusinessModal('NewService'); this.ModalTitle = 'View Services'},
         OpenAF: function(){this.NewBusinessModal('AF'); this.ModalTitle = 'Add fund for...'},
-        OpenUT: function(){this.NewBusinessModal('UTS'); this.ModalTitle = 'Update Tags.'},
+        OpenUT: function(){this.NewBusinessModal('UTS'); this.ModalTitle = 'Update Tags.'; console.log(`shut modal: ${this.iden}`);},
     }
 }
 </script>

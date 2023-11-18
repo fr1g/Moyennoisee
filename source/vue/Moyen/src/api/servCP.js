@@ -27,7 +27,7 @@ export default {
     },
     UpdateTags: function(sid, tag, token){ // p:<page> for all-paged or u:<uid> for exactly one
         return request({
-            url: '/service/get',
+            url: '/service/update',
             method: 'post',
             data: `${sid}:${tag}`,
             headers: {

@@ -1,6 +1,6 @@
 <template>
 <div :class="this.iid == 0 ? 'hidden ' : ''" class="bg-zinc-500 m-3.5 p-3.5 bg-opacity-70 hover:bg-opacity-90 active:bg-opacity-100 shadow-lg hover:shadow-xl active:shadow transition-all rounded-lg border border-transparent">
-    <h1 class="text-left mb-1 text-xl font-semibold" :class="(this.plus.toString().includes('disable') ? 'line-through italic opacity-70 text-left' : 'text')">{{ (this.name == undefined ? 'No Title' : this.name) }}</h1>
+    <h1 class="text-left mb-1 text-xl font-semibold" :class="(this.plus.toString().includes('disable') ? 'line-through italic opacity-70 text-left' : 'text')">{{ (this.name == undefined ? 'No Title' : this.name) }} ({{ this.iid }})</h1>
     <p class="text-left " >{{ (this.desc == undefined ? 'No Desc' : this.desc) }}</p>
     <br>
     <p class="clear-both">
@@ -24,12 +24,13 @@ export default {
     },
     inject: ['UTags'],
     methods: {
-        HandleUpdate: function(){
+        HandleUpdate: function(){   
             document.getElementById('STAGID').value = this.iid;
-            document.getElementById('STAG').value = '';
+            document.getElementById('STAG').value = this.plus;
             setInterval(() => {
-                this.UTags();
+                
             }, 10);
+            this.UTags();
 
         }
     }
